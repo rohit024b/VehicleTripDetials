@@ -40,7 +40,10 @@ const GpsData = () => {
     useEffect(() => {
         if (Array.isArray(gpsData) && gpsData.length > 0 && mapRef.current) {
             const bounds = L.latLngBounds(gpsData.map(point => [point.latitude, point.longitude]));
-            mapRef.current.fitBounds(bounds);
+            mapRef.current.flyToBounds(bounds, {
+                duration: 1.5, // Duration in seconds
+                easeLinearity: 0.25 // Controls the animation curve (0 is slowest, 1 is fastest)
+            });
         }
     }, [gpsData]);
 
@@ -144,13 +147,13 @@ const GpsData = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const rowsPerPage = 5; // Set the number of rows you want to display per page
 
-     // Calculate the total number of pages
-     const totalPages = Math.ceil(gpsData.length / rowsPerPage);
+    // Calculate the total number of pages
+    const totalPages = Math.ceil(gpsData.length / rowsPerPage);
 
-     // Slice the gpsData based on the current page
-     const indexOfLastData = currentPage * rowsPerPage;
-     const indexOfFirstData = indexOfLastData - rowsPerPage;
-     const currentData = gpsData.slice(indexOfFirstData, indexOfLastData);
+    // Slice the gpsData based on the current page
+    const indexOfLastData = currentPage * rowsPerPage;
+    const indexOfFirstData = indexOfLastData - rowsPerPage;
+    const currentData = gpsData.slice(indexOfFirstData, indexOfLastData);
 
     // Pagination controls
     const handleNextPage = () => {
@@ -168,7 +171,7 @@ const GpsData = () => {
 
     return (
         <>
-            <div style={{width: "100%", display: 'flex', flexDirection: 'column', alignContent: 'center', alignItems: 'center' }}>
+            <div style={{ width: "100%", display: 'flex', flexDirection: 'column', alignContent: 'center', alignItems: 'center' }}>
                 <div className='tripName'>
                     <h4>{tripName}</h4>
                 </div>
@@ -179,40 +182,40 @@ const GpsData = () => {
                     <span><img className='mapicons' src="https://i.imgur.com/Ib4YdpI.png" alt="" /> Over Speeding</span>
                 </div>
                 <div style={{ height: "400px", width: "100%", display: 'flex', flexDirection: 'column', alignContent: 'center', alignItems: 'center' }}>
-                <MapContainer className='mapContainer' ref={mapRef} center={[0, 0]} zoom={10} style={{ height: "100%", width: "80%" }}>
-                    <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+                    <MapContainer className='mapContainer' ref={mapRef} center={[0, 0]} zoom={10} style={{ height: "100%", width: "80%" }}>
+                        <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
 
-                    {processedGpsData.length > 0 && (
-                        <>
-                            <Polyline positions={processedGpsData.map(point => [point.latitude, point.longitude])} color="blue" />
+                        {processedGpsData.length > 0 && (
+                            <>
+                                <Polyline positions={processedGpsData.map(point => [point.latitude, point.longitude])} color="blue" />
 
-                            <Marker position={[processedGpsData[0].latitude, processedGpsData[0].longitude]} icon={redIcon}>
-                                <Popup>Start Point</Popup>
-                            </Marker>
+                                <Marker position={[processedGpsData[0].latitude, processedGpsData[0].longitude]} icon={redIcon}>
+                                    <Popup>Start Point</Popup>
+                                </Marker>
 
-                            <Marker position={[processedGpsData[processedGpsData.length - 1].latitude, processedGpsData[processedGpsData.length - 1].longitude]} icon={redIcon}>
-                                <Popup>End Point</Popup>
-                            </Marker>
+                                <Marker position={[processedGpsData[processedGpsData.length - 1].latitude, processedGpsData[processedGpsData.length - 1].longitude]} icon={redIcon}>
+                                    <Popup>End Point</Popup>
+                                </Marker>
 
-                            {processedGpsData.map((point, index) => (
-                                point.isStoppage ? (
-                                    <Marker key={index} position={[point.latitude, point.longitude]} icon={idleIcon}>
-                                        <Popup>Stoppage at {new Date(point.timestamp).toLocaleString()}</Popup>
-                                    </Marker>
-                                ) : point.isIdle ? (
-                                    <Marker key={index} position={[point.latitude, point.longitude]} icon={idleIcon}>
-                                        <Popup>Idle at {new Date(point.timestamp).toLocaleString()}</Popup>
-                                    </Marker>
-                                ) : point.isSpeeding ? (
-                                    <Marker key={index} position={[point.latitude, point.longitude]} icon={overSpeed}>
-                                        <Popup>Overspeeding at {new Date(point.timestamp).toLocaleString()}</Popup>
-                                    </Marker>
-                                ) : null
-                            ))}
-                        </>
-                    )}
+                                {processedGpsData.map((point, index) => (
+                                    point.isStoppage ? (
+                                        <Marker key={index} position={[point.latitude, point.longitude]} icon={idleIcon}>
+                                            <Popup>Stoppage at {new Date(point.timestamp).toLocaleString()}</Popup>
+                                        </Marker>
+                                    ) : point.isIdle ? (
+                                        <Marker key={index} position={[point.latitude, point.longitude]} icon={idleIcon}>
+                                            <Popup>Idle at {new Date(point.timestamp).toLocaleString()}</Popup>
+                                        </Marker>
+                                    ) : point.isSpeeding ? (
+                                        <Marker key={index} position={[point.latitude, point.longitude]} icon={overSpeed}>
+                                            <Popup>Overspeeding at {new Date(point.timestamp).toLocaleString()}</Popup>
+                                        </Marker>
+                                    ) : null
+                                ))}
+                            </>
+                        )}
 
-                </MapContainer>
+                    </MapContainer>
                 </div>
 
                 {reportData && (
@@ -253,47 +256,47 @@ const GpsData = () => {
             </div>
 
             <div style={{ padding: '20px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-            <h2>GPS Data Table</h2>
-            <table style={{ width: '100%', maxWidth:'80%', borderCollapse: 'collapse' }}>
-                <thead>
-                    <tr>
-                        <th style={headerStyle}>Time</th>
-                        <th style={headerStyle}>Point</th>
-                        <th style={headerStyle}>Ignition</th>
-                        <th style={headerStyle}>Speed</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {currentData.map((point, index) => (
-                        <tr key={index}>
-                            <td style={cellStyle}>
-                                {formatTime(point.timestamp)} to {formatTime(point.timestamp)}
-                            </td>
-                            <td style={cellStyle}>
-                                {point.latitude.toFixed(4)}° N, {point.longitude.toFixed(4)}° W
-                            </td>
-                            <td style={{ color: point.ignition ? 'green' : 'red', textAlign:'center', border: '1px solid #ddd'  }}>
-                                {point.ignition ? 'ON' : 'OFF'}
-                            </td>
-                            <td style={cellStyle}>
-                                {point.speed} KM/H
-                            </td>
+                <h2>GPS Data Table</h2>
+                <table style={{ width: '100%', maxWidth: '80%', borderCollapse: 'collapse' }}>
+                    <thead>
+                        <tr>
+                            <th style={headerStyle}>Time</th>
+                            <th style={headerStyle}>Point</th>
+                            <th style={headerStyle}>Ignition</th>
+                            <th style={headerStyle}>Speed</th>
                         </tr>
-                    ))}
-                </tbody>
-            </table>
-            <div style={{ marginTop: '20px' }}>
-                <button onClick={handlePreviousPage} disabled={currentPage === 1}>
-                    Previous
-                </button>
-                <span style={{ margin: '0 10px' }}>
-                    Page {currentPage} of {totalPages}
-                </span>
-                <button onClick={handleNextPage} disabled={currentPage === totalPages}>
-                    Next
-                </button>
+                    </thead>
+                    <tbody>
+                        {currentData.map((point, index) => (
+                            <tr key={index}>
+                                <td style={cellStyle}>
+                                    {formatTime(point.timestamp)} to {formatTime(point.timestamp)}
+                                </td>
+                                <td style={cellStyle}>
+                                    {point.latitude.toFixed(4)}° N, {point.longitude.toFixed(4)}° W
+                                </td>
+                                <td style={{ color: point.ignition ? 'green' : 'red', textAlign: 'center', border: '1px solid #ddd' }}>
+                                    {point.ignition ? 'ON' : 'OFF'}
+                                </td>
+                                <td style={cellStyle}>
+                                    {point.speed} KM/H
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+                <div style={{ marginTop: '20px' }}>
+                    <button onClick={handlePreviousPage} disabled={currentPage === 1}>
+                        Previous
+                    </button>
+                    <span style={{ margin: '0 10px' }}>
+                        Page {currentPage} of {totalPages}
+                    </span>
+                    <button onClick={handleNextPage} disabled={currentPage === totalPages}>
+                        Next
+                    </button>
+                </div>
             </div>
-        </div>
 
         </>
 
@@ -309,8 +312,8 @@ const headerStyle = {
 };
 
 const cellStyle = {
-    width:'300px',
-    height:'100px',
+    width: '300px',
+    height: '100px',
     padding: '10px',
     border: '1px solid #ddd',
     textAlign: 'center',

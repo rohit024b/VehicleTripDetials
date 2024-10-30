@@ -6,7 +6,7 @@ const SignUp = () => {
     const token = localStorage.getItem('token');
 
     const [data, setData] = useState({
-        name:"",
+        name: "",
         email: "",
         password: ""
     });
@@ -48,12 +48,21 @@ const SignUp = () => {
     return (
         <div className="login-container">
             <div className="login-card">
-                <img
-                    src="https://cdn-icons-png.flaticon.com/512/39/39871.png"
-                    alt="Speedo logo"
-                    className="logo"
-                />
-                <h2>Speedo</h2>
+                <div style={{
+                    height: '55px',
+                    margin: '10px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '5px'
+                }}>
+                    <img
+                        src="https://i.imgur.com/dmr2UXU.png"
+                        alt="Speedo logo"
+                        className="logos"
+                    />
+                    <h2 className='logoName'>Speedo</h2>
+                </div>
                 <form onSubmit={handleSubmit}>
                     <div className="input-group">
                         <label htmlFor="name"><b>Name</b></label>

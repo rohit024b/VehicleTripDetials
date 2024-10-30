@@ -55,12 +55,21 @@ const Login = () => {
   return (
     <div className="login-container">
       <div className="login-card">
+        <div style={{
+          height:'55px',
+          margin:'10px',
+          display:'flex',
+          alignItems:'center',
+          justifyContent:'center',
+          gap:'5px'
+        }}>
         <img
-          src="https://cdn-icons-png.flaticon.com/512/39/39871.png"
+          src="https://i.imgur.com/dmr2UXU.png"
           alt="Speedo logo"
           className="logos"
         />
-        <h2>Speedo</h2>
+        <h2 className='logoName'>Speedo</h2>
+        </div>
         <form onSubmit={handleSubmit}>
           <div className="input-group">
             <label htmlFor="email"><b>Email</b></label>

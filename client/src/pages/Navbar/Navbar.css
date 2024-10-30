@@ -21,6 +21,8 @@
 .leftheader {
   display: flex;
   align-items: center;
+  display: flex;
+  gap: 5px;
 }
 .rightHeader {
   display: flex;
@@ -39,4 +41,11 @@
   width: 35px;
   height: 35px;
   object-fit: contain;
+}
+
+.logoNames{
+  margin: 0;
+  padding-top: 15px;
+  font-weight: bold;
+  color: #333333;
 }

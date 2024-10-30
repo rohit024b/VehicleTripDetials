@@ -23,11 +23,11 @@ const Navbar = () => {
                 <div className='headercntainer'>
                     <div className='leftheader'>
                         <img
-                            src="https://cdn-icons-png.flaticon.com/512/39/39871.png"
+                            src="https://i.imgur.com/dmr2UXU.png"
                             alt="Speedo logo"
                             className="logo"
                         />
-                        <span>Speedo</span>
+                        <span className='logoNames'>Speedo</span>
                     </div>
                     <div className='rightHeader'>
                         <button onClick={handleLogout} className='logOutBtn'>
