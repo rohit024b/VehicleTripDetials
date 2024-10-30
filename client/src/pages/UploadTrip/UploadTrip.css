@@ -1,0 +1,202 @@
+.upload-trip-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-color: #ffffff;
+  padding: 0;
+}
+
+.welcome-message {
+  font-size: 1.5em;
+  width: 100%;
+  max-width: 80%;
+  margin-top: 100px;
+  color: #333333;
+  font-weight: bold;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 8px;
+  border: 1px solid black;
+  text-align: center;
+}
+
+.upload-box {
+  margin-top: 20px;
+  width: 100%;
+  max-width: 77%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 8px;
+  border: 1px solid black;
+  text-align: center;
+}
+.trip-image2{
+    display: none;
+}
+
+.trip-image {
+  width: 200px;
+  margin-bottom: 20px;
+}
+
+.upload-button {
+  background-color: #333333;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.upload-button:hover {
+  background-color: #555555;
+}
+
+.upload-description {
+  margin-top: 10px;
+  color: #666666;
+}
+
+.highlight {
+  font-weight: bold;
+  color: #333333;
+}
+
+/* Popup Styles */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup {
+    background-color: #f3f3f3;
+    padding: 20px;
+    width: 400px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2);
+    text-align: center; 
+}
+
+
+.trip-name-input {
+    width: 100%;
+    max-width: 70%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.file-upload-label {
+    width: 100%;
+    max-width: 70%;
+    display: flex;
+    padding: 15px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+    border: 1px solid #3498db;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    color: #3498db;
+}
+
+.upload-icon {
+    width: 40px;
+    margin-bottom: 5px;
+}
+
+.file-input {
+    display: none;
+}
+
+.popup-buttons {
+    width: 100%;
+    max-width: 70%;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.cancel-button, .save-button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.cancel-button {
+    width: 100%;
+    border: 1px solid black;
+}
+
+.save-button {
+    width: 100%;
+    background-color: #2f3032;
+    color: white;
+}
+
+.your-trips-section {
+    width: 100%;
+    max-width: 80%;
+    margin-top: 20px;
+}
+
+.trip-item {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.trip-item label {
+    margin-left: 10px;
+}
+
+.tripsHeader{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.tripActionBtns{
+    width: 100px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.tripDelete{
+    color: black;
+    border: 1px solid #2f3032;
+}
+
+.tripOpen{
+    color: #f3f3f3;
+    background-color: #2f3032;
+    border: 1px solid #2f3032;
+}

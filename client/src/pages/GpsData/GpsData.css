@@ -1,0 +1,59 @@
+.mapData{
+    width: 100%;
+    max-width: 80%;
+    margin: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: 500;
+}
+.mapData span{
+    display: flex;
+    align-items: center;
+}
+.mapicons{
+    width: 20px;
+    height: 22px;
+    object-fit: contain;
+}
+
+.tripName{
+    margin-top: 80px;
+    width: 100%;
+    max-width: 77%;
+    padding: 5px;
+    padding-left: 25px;
+    border: 1px solid black;
+    border-radius: 12px;
+
+}
+
+
+.reportOfData {
+    width: 80%;
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(5, 225px);
+    gap: 15px;
+    align-items: center;
+    align-content: center;
+    justify-content: start;
+    overflow-y: hidden;
+    overflow-x: auto; 
+    white-space: nowrap;
+}
+
+.reportOfData::-webkit-scrollbar {
+    display: none; 
+}
+
+.reprtCards {
+    padding: 10px;
+    object-fit: cover;
+    text-align: center;
+    border: 1px solid black;
+    border-radius: 8px;
+    display: inline-block;
+}

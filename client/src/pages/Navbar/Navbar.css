@@ -1,0 +1,42 @@
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 20px;
+  background-color: #ffffff;
+  position: fixed;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1000000;
+}
+
+.headercntainer {
+  width: 100%;
+  max-width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.leftheader {
+  display: flex;
+  align-items: center;
+}
+.rightHeader {
+  display: flex;
+  align-items: center;
+}
+
+.logOutBtn {
+  width: 100px;
+  padding: 5px;
+  background-color: #2f3032;
+  color: #f3f3f3;
+  border-radius: 4px;
+}
+
+.logo {
+  width: 35px;
+  height: 35px;
+  object-fit: contain;
+}
