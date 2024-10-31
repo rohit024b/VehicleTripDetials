@@ -16,8 +16,13 @@ const GpsData = () => {
     const mapRef = useRef();
     const [processedGpsData, setProcessedGpsData] = useState([]);
     const [tripName, setTripName] = useState()
+    const stoppageIcon = new L.Icon({ iconUrl: 'https://i.imgur.com/qM7sVer.png', iconSize: [35, 35] });
+    const idleIcon = new L.Icon({ iconUrl: 'https://i.imgur.com/qM7sVer.png', iconSize: [35, 35] });
+    const redIcon = new L.Icon({ iconUrl: 'https://i.imgur.com/wqpu6FH.png', iconSize: [40, 40] });
+    const overSpeed = new L.Icon({ iconUrl: 'https://i.imgur.com/wqpu6FH.png', iconSize: [40, 40] });
+    const [currentPage, setCurrentPage] = useState(1);
 
-    console.log(processedGpsData)
+
     useEffect(() => {
         const fetchGpsData = async () => {
             try {
@@ -47,10 +52,6 @@ const GpsData = () => {
         }
     }, [gpsData]);
 
-    const stoppageIcon = new L.Icon({ iconUrl: 'https://i.imgur.com/qM7sVer.png', iconSize: [35, 35] });
-    const idleIcon = new L.Icon({ iconUrl: 'https://i.imgur.com/qM7sVer.png', iconSize: [35, 35] });
-    const redIcon = new L.Icon({ iconUrl: 'https://i.imgur.com/wqpu6FH.png', iconSize: [40, 40] });
-    const overSpeed = new L.Icon({ iconUrl: 'https://i.imgur.com/wqpu6FH.png', iconSize: [40, 40] });
 
     const SPEED_LIMIT = 60;
 
@@ -144,7 +145,7 @@ const GpsData = () => {
             hour12: true
         })
     };
-    const [currentPage, setCurrentPage] = useState(1);
+
     const rowsPerPage = 5; // Set the number of rows you want to display per page
 
     // Calculate the total number of pages
@@ -155,7 +156,7 @@ const GpsData = () => {
     const indexOfFirstData = indexOfLastData - rowsPerPage;
     const currentData = gpsData.slice(indexOfFirstData, indexOfLastData);
 
-    // Pagination controls
+    // Pagination
     const handleNextPage = () => {
         if (currentPage < totalPages) {
             setCurrentPage(currentPage + 1);
@@ -199,7 +200,7 @@ const GpsData = () => {
 
                                 {processedGpsData.map((point, index) => (
                                     point.isStoppage ? (
-                                        <Marker key={index} position={[point.latitude, point.longitude]} icon={idleIcon}>
+                                        <Marker key={index} position={[point.latitude, point.longitude]} icon={stoppageIcon}>
                                             <Popup>Stoppage at {new Date(point.timestamp).toLocaleString()}</Popup>
                                         </Marker>
                                     ) : point.isIdle ? (
@@ -297,10 +298,7 @@ const GpsData = () => {
                     </button>
                 </div>
             </div>
-
         </>
-
-
     );
 };
 
@@ -308,7 +306,6 @@ const headerStyle = {
     padding: '10px',
     border: '1px solid #ddd',
     backgroundColor: 'white',
-    // textAlign: 'center',
 };
 
 const cellStyle = {

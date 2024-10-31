@@ -4,7 +4,7 @@ const csvParser = require('csv-parser');
 const fs = require('fs');
 const auth = require('../middlewares/auth');
 const TripModel = require('../models/trip.model');
-const { getDistance } = require('geolib'); // Importing getDistance from geolib
+const { getDistance } = require('geolib'); 
 const router = express.Router();
 const upload = multer({ dest: 'uploads/' });
 
@@ -49,7 +49,7 @@ router.post('/uploadCsv', auth, upload.single('file'), async (req, res) => {
 
     const parseCsv = () => {
         return new Promise((resolve, reject) => {
-            fs.createReadStream(req.file.path)
+            fs.createReadStream(req.file.path) //file path to read
                 .pipe(csvParser())
                 .on('data', (row) => {
                     const { latitude, longitude, timestamp, ignition } = row;

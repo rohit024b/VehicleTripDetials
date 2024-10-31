@@ -4,8 +4,7 @@ import '../Navbar/Navbar.css'
 const Navbar = () => {
     const token = localStorage.getItem('token');
 
-    //logout
-    const handleLogout=()=>{
+    const handleLogout = () => {
         try {
             if (token) {
                 localStorage.removeItem('token');
@@ -17,9 +16,9 @@ const Navbar = () => {
             console.log(error)
         }
     }
-  return (
-    <div>
-        <header className="header">
+    return (
+        <div>
+            <header className="header">
                 <div className='headercntainer'>
                     <div className='leftheader'>
                         <img
@@ -36,8 +35,8 @@ const Navbar = () => {
                     </div>
                 </div>
             </header>
-    </div>
-  )
+        </div>
+    )
 }
 
 export default Navbar

@@ -13,14 +13,13 @@ import SignUp from '../pages/Signup/SignUp'
 
 const AllRoutes = () => {
     const token = localStorage.getItem('token');
-    const navigate = useNavigate()
 
     return (
         <>
-            {token? <Navbar />: ""}
+            {token ? <Navbar /> : ""}
             <Routes>
-                <Route path='/login' element={token? null : <Login /> } />
-                <Route path='/signup' element={token? null : <SignUp /> } />
+                <Route path='/login' element={token ? null : <Login />} />
+                <Route path='/signup' element={token ? null : <SignUp />} />
                 <Route path='/' element={<PrivateRoutes><UploadTrip /></PrivateRoutes>} />
                 <Route path='*' element={<PrivateRoutes><ErrorPage /></PrivateRoutes>} />
                 <Route path="/gps/:id" element={<PrivateRoutes><GpsData /></PrivateRoutes>} />

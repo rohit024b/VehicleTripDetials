@@ -5,7 +5,10 @@ import { useNavigate } from 'react-router-dom';
 
 
 const Login = () => {
+
   const token = localStorage.getItem('token');
+  const [error, setError] = useState("");
+  const navigate = useNavigate()
 
   const [data, setData] = useState({
     email: "",
@@ -22,10 +25,6 @@ const Login = () => {
       }
     })
   };
-
-  // console.log(data)
-  const [error, setError] = useState("");
-  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -56,19 +55,19 @@ const Login = () => {
     <div className="login-container">
       <div className="login-card">
         <div style={{
-          height:'55px',
-          margin:'10px',
-          display:'flex',
-          alignItems:'center',
-          justifyContent:'center',
-          gap:'5px'
+          height: '55px',
+          margin: '10px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '5px'
         }}>
-        <img
-          src="https://i.imgur.com/dmr2UXU.png"
-          alt="Speedo logo"
-          className="logos"
-        />
-        <h2 className='logoName'>Speedo</h2>
+          <img
+            src="https://i.imgur.com/dmr2UXU.png"
+            alt="Speedo logo"
+            className="logos"
+          />
+          <h2 className='logoName'>Speedo</h2>
         </div>
         <form onSubmit={handleSubmit}>
           <div className="input-group">

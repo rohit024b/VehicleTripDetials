@@ -10,6 +10,8 @@ const SignUp = () => {
         email: "",
         password: ""
     });
+    const [error, setError] = useState("");
+    const navigate = useNavigate()
 
     const handleForm = (e) => {
         const { value, name } = e.target;
@@ -21,10 +23,6 @@ const SignUp = () => {
             }
         })
     };
-
-    // console.log(data)
-    const [error, setError] = useState("");
-    const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -43,7 +41,6 @@ const SignUp = () => {
             }
         }
     };
-
 
     return (
         <div className="login-container">

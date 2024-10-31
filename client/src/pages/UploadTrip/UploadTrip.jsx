@@ -10,8 +10,8 @@ const UploadTrip = () => {
     const [trips, setTrips] = useState([]); // State for storing trips
     const [selectedTrips, setSelectedTrips] = useState({}); // State for storing selected trips
     const token = localStorage.getItem('token');
-
     const navigate = useNavigate()
+
     useEffect(() => {
         const fetchTrips = async () => {
             try {
@@ -52,7 +52,7 @@ const UploadTrip = () => {
 
         const formData = new FormData();
         formData.append('file', file);
-        formData.append('name', tripName); // Send trip name here
+        formData.append('name', tripName);
 
         try {
             const response = await axios.post(`${process.env.REACT_APP_API_URL}/trips/uploadCsv`, formData, {
@@ -61,7 +61,6 @@ const UploadTrip = () => {
                     'Authorization': `Bearer ${token}`,
                 },
             });
-            // console.log(response)
             alert("Trip data uploaded successfully!");
             setFile(null);
             setTripName('')
@@ -74,7 +73,7 @@ const UploadTrip = () => {
                         'Authorization': `Bearer ${token}`,
                     },
                 });
-                setTrips(updatedTripsResponse.data.data); // Update the trips state here
+                setTrips(updatedTripsResponse.data.data);
             }, 1000);
         } catch (error) {
             console.error("Error uploading trip data:", error);
@@ -142,8 +141,6 @@ const UploadTrip = () => {
             console.error("Error fetching GPS data:", error);
         }
     };
-    // console.log(tripName)
-
 
     return (
         <div className="upload-trip-container">
