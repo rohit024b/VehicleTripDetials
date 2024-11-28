@@ -225,7 +225,7 @@ const GpsData = () => {
                             <div>
                                 <img src="https://i.imgur.com/xbqWVap.png" width={'30px'} alt="" />
                             </div>
-                            <p><b>{reportData.totalDistance} km</b> <br />Total Distance</p>
+                            <p><b>{reportData.totalDistance.toFixed(2)} km</b><br />Total Distance</p>
                         </div>
                         <div className='reprtCards' >
                             <div>
@@ -237,19 +237,19 @@ const GpsData = () => {
                             <div>
                                 <img src="https://i.imgur.com/G85B7KF.png" width={'30px'} alt="" />
                             </div>
-                            <p><b>{reportData.overSpeedingDistance} Km</b><br />Over Speeding Distance</p>
+                            <p><b>{reportData.overSpeedingDistance.toFixed(2) || 0} Km</b><br />Over Speeding Distance</p>
                         </div>
                         <div className='reprtCards' >
                             <div>
                                 <img src="https://i.imgur.com/G85B7KF.png" width={'30px'} alt="" />
                             </div>
-                            <p><b>{reportData.idleDuration} mins</b><br />Over Speeding Duration</p>
+                            <p><b>{reportData.overSpeedingDuration.toFixed(1) || 0} mins</b><br />Over Speeding Duration</p>
                         </div>
                         <div className='reprtCards' >
                             <div>
                                 <img src="https://i.imgur.com/aOVHmjX.png" width={'30px'} alt="" />
                             </div>
-                            <p><b>{reportData.totalStoppedDuration} mins</b><br />Stopped Duration</p>
+                            <p><b>{reportData.totalStoppedDuration.toFixed(1) || 0} mins</b><br />Total Stopped Duration</p>
                         </div>
                     </div>
                 )}

@@ -38,10 +38,12 @@ const UploadTrip = () => {
         setTripName('');
         setFile(null);
     };
+    const [fileName, setFileName] = useState('');
 
     const handleFileUpload = (event) => {
         const selectedFile = event.target.files[0];
         setFile(selectedFile);
+        setFileName(selectedFile.name); // Update state with file name
     };
 
     const handleSave = async () => {
@@ -176,6 +178,7 @@ const UploadTrip = () => {
                                 className="file-input"
                                 onChange={handleFileUpload}
                             />
+                            {fileName && <p style={{color:'black'}}>Selected File: <i>`{fileName}`</i></p>}
                         </label>
                         <div className="popup-buttons">
                             <button onClick={handleClosePopup} className="cancel-button">Cancel</button>
