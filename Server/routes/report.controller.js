@@ -30,7 +30,7 @@ router.get('/:tripId', auth, async (req, res) => {
 
         // Define your thresholds
         const SPEED_LIMIT = 60; // km/h for overspeeding threshold
-        const TIME_INTERVAL = 2; // seconds between points
+        const TIME_INTERVAL = 1; // seconds between points
 
         for (let i = 0; i < trip.coordinates.length - 1; i++) {
             const start = trip.coordinates[i];
